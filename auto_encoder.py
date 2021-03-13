@@ -141,6 +141,10 @@ def normalize(data):
     stddev = np.std(data)
     return (data - means)/stddev
 
+def flatten_and_normalize(tensor):
+    # print(tf.reshape(tensor,[-1]))
+    return normalize(tf.reshape(tensor,[-1]))
+
 # @tf.function
 def train_step(input, auto_encoder, optimizer=_optimizer, loss = _mse_loss):
     with tf.GradientTape() as tape:
@@ -150,8 +154,10 @@ def train_step(input, auto_encoder, optimizer=_optimizer, loss = _mse_loss):
         similarity_distance = 0
         # distance, path = fastdtw(codes, input, dist=euclidean)
         for i in range(len(codes) - 1):
-            input_a, input_b = normalize(input[i]), normalize(input[i + 1])
-            codes_a, codes_b = normalize(codes[i]), normalize(codes[i + 1])
+            # print(input[i], input[i + 1])
+            # print(codes[i], codes[i + 1])
+            input_a, input_b = flatten_and_normalize(input[i]), flatten_and_normalize(input[i + 1])
+            codes_a, codes_b = flatten_and_normalize(codes[i]), flatten_and_normalize(codes[i + 1])
             similarity_distance += abs(SBD(codes_a, codes_b)[0] - euclidean(input_a, input_b))
 
         similarity_distance /= len(codes) - 1
