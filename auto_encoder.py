@@ -1,4 +1,8 @@
 import tensorflow as tf
+import numpy as np
+from kshape import _sbd as SBD
+from scipy.spatial.distance import euclidean
+from fastdtw import fastdtw
 
 class Encoder(tf.keras.Model):
 
@@ -108,13 +112,55 @@ class AutoEncoder:
         self.loss = loss
         self.optimizer = optimizer
 
-@tf.function
+def normalize_3d(data):
+    """
+    Z-normalize data with shape (x, y, z)
+    x = # of timeseries
+    y = len of each timeseries
+    z = vars in each timeseres
+    
+    s.t. each array in [., :, .] (i.e. each timeseries variable)
+    is zero-mean and unit stddev
+    """
+    sz, l, d = data.shape
+    means = np.broadcast_to(np.mean(data, axis=1)[:, None, :], (sz, l, d))
+    stddev = np.broadcast_to(np.std(data, axis=1)[:, None, :], (sz, l, d)) 
+    return (data - means)/stddev
+    
+def normalize(data):
+    """
+    Z-normalize data with shape (x, y)
+    x = # of timeseries
+    y = len of each timeseries
+    
+    s.t. each array in [., :, .] (i.e. each timeseries variable)
+    is zero-mean and unit stddev
+    """
+    # sz, l = data.shape
+    means = np.mean(data)
+    stddev = np.std(data)
+    return (data - means)/stddev
+
+# @tf.function
 def train_step(input, auto_encoder, optimizer=_optimizer, loss = _mse_loss):
     with tf.GradientTape() as tape:
         codes = auto_encoder.encode(input, training=True)
         decodes = auto_encoder.decode(codes, training=True)
-        loss = loss(input, decodes)
+        
+        similarity_distance = 0
+        # distance, path = fastdtw(codes, input, dist=euclidean)
+        for i in range(len(codes) - 1):
+            input_a, input_b = normalize(input[i]), normalize(input[i + 1])
+            codes_a, codes_b = normalize(codes[i]), normalize(codes[i + 1])
+            similarity_distance += abs(SBD(codes_a, codes_b)[0] - euclidean(input_a, input_b))
+
+        similarity_distance /= len(codes) - 1
+
+        print(loss(input, decodes), similarity_distance)
+        loss = loss(input, decodes) + 0.01 * similarity_distance
+
         trainables = auto_encoder.encode.trainable_variables + auto_encoder.decode.trainable_variables
+
     gradients = tape.gradient(loss, trainables)
     optimizer.apply_gradients(zip(gradients, trainables))
     return loss
