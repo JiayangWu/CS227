@@ -158,12 +158,12 @@ def train_step(input, auto_encoder, optimizer=_optimizer, loss = _mse_loss):
             # print(codes[i], codes[i + 1])
             input_a, input_b = flatten_and_normalize(input[i]), flatten_and_normalize(input[i + 1])
             codes_a, codes_b = flatten_and_normalize(codes[i]), flatten_and_normalize(codes[i + 1])
-            similarity_distance += abs(SBD(codes_a, codes_b)[0] - euclidean(input_a, input_b))
+            similarity_distance += abs(SBD(codes_a, codes_b)[0] - SBD(input_a, input_b)[0])
 
         similarity_distance /= len(codes) - 1
 
-        print(loss(input, decodes), similarity_distance)
-        loss = loss(input, decodes) + 0.01 * similarity_distance
+        # print(loss(input, decodes), similarity_distance)
+        loss = 0.01 * loss(input, decodes) + 0.99 * similarity_distance
 
         trainables = auto_encoder.encode.trainable_variables + auto_encoder.decode.trainable_variables
 
