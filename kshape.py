@@ -105,9 +105,9 @@ def _sbd(x, y):
     ncc = _ncc_c(x, y)
     idx = ncc.argmax()
     dist = 1 - ncc[idx]
-    yshift = roll_zeropad(y, (idx + 1) - max(len(x), len(y)))
+    # yshift = roll_zeropad(y, (idx + 1) - max(len(x), len(y)))
 
-    return dist, yshift
+    return dist#, yshift
 
 
 def _extract_shape(idx, x, j, cur_center):
