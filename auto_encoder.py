@@ -1,6 +1,6 @@
 import tensorflow as tf
 import numpy as np
-
+import random
 from kshape import _sbd as SBD
 from scipy.spatial.distance import euclidean
 from fastdtw import fastdtw
@@ -22,6 +22,7 @@ class Encoder(tf.keras.Model):
         for f, k in zip(filters, kernel_sizes):
             l = tf.keras.layers.Conv1D(f, k, activation="relu")
             b = tf.keras.layers.BatchNormalization()
+            # d = tf.keras.layers.Dropout(0.2)
             self.convs.append(l)
             self.norms.append(b)
             output_len = output_len - (k-1)
@@ -112,21 +113,6 @@ class AutoEncoder:
 
         self.loss = loss
         self.optimizer = optimizer
-
-def normalize_3d(data):
-    """
-    Z-normalize data with shape (x, y, z)
-    x = # of timeseries
-    y = len of each timeseries
-    z = vars in each timeseres
-    
-    s.t. each array in [., :, .] (i.e. each timeseries variable)
-    is zero-mean and unit stddev
-    """
-    sz, l, d = data.shape
-    means = np.broadcast_to(np.mean(data, axis=1)[:, None, :], (sz, l, d))
-    stddev = np.broadcast_to(np.std(data, axis=1)[:, None, :], (sz, l, d)) 
-    return (data - means)/stddev
     
 def normalize(data):
     """
@@ -145,6 +131,7 @@ def normalize(data):
 def flatten_and_normalize(tensor):
     # print(tf.reshape(tensor,[-1]))
     return normalize(tf.reshape(tensor,[-1]))
+
 
 # @tf.function
 def train_step(input, auto_encoder, optimizer=_optimizer, loss = _mse_loss):
