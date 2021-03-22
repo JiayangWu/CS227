@@ -9,7 +9,8 @@ all_datasets =  ['Haptics', 'SyntheticControl', 'Worms', 'Computers', 'HouseTwen
 
 valid_datasets = []
 for dataset in all_datasets:
-    if py_ts_data.data_info(dataset)['n_timestamps'] > 0 and py_ts_data.data_info(dataset)['n_variables'] == 1:
+    if py_ts_data.data_info(dataset)['n_timestamps'] > 0 and \
+        py_ts_data.data_info(dataset)['n_variables'] == 1:
         valid_datasets.append(dataset)
         print(dataset, py_ts_data.data_info(dataset)['train_size'])
 
