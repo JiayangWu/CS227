@@ -4,6 +4,7 @@ import random
 from kshape import _sbd as SBD
 from scipy.spatial.distance import euclidean
 from fastdtw import fastdtw
+from sklearn.metrics import mean_absolute_error as MAE
 
 class Encoder(tf.keras.Model):
 
@@ -20,8 +21,9 @@ class Encoder(tf.keras.Model):
         output_channels = input_shape[1]
 
         for f, k in zip(filters, kernel_sizes):
-            l = tf.keras.layers.Conv1D(f, k, activation="tanh")
+            l = tf.keras.layers.Conv1D(f, k, activation="relu")
             b = tf.keras.layers.BatchNormalization()
+            # d = tf.keras.layers.Dropout(0.2)
             self.convs.append(l)
             self.norms.append(b)
             output_len = output_len - (k-1)
@@ -131,28 +133,25 @@ def flatten_and_normalize(tensor):
     # print(tf.reshape(tensor,[-1]))
     return normalize(tf.reshape(tensor,[-1]))
 
+def ED(X):
+    return np.linalg.norm(X, axis = 1)
 
 # @tf.function
-def train_step(input, auto_encoder, similarity_coff = 0.2, optimizer=_optimizer, loss = _mse_loss):
+def train_step(X, Y, distance, auto_encoder, optimizer=_optimizer, loss = _mse_loss):
     with tf.GradientTape() as tape:
-        codes = auto_encoder.encode(input, training=True)
-        decodes = auto_encoder.decode(codes, training=True)
+        X_codes = auto_encoder.encode(X, training=True)
+        Y_codes = auto_encoder.encode(Y, training=True)
         
-        similarity_distance = 0
-        if similarity_coff > 0:
-            # distance, path = fastdtw(codes, input, dist=euclidean)
-            for i in range(len(codes) - 1):
-                # print(flatten_and_normalize(input[i]))
-                # print(flatten_and_normalize(codes[i]))
-                input_a, input_b = flatten_and_normalize(input[i]), flatten_and_normalize(input[i + 1])
-                codes_a, codes_b = flatten_and_normalize(codes[i]), flatten_and_normalize(codes[i + 1])
-                similarity_distance += abs(euclidean(codes_a, codes_b) - SBD(input_a, input_b))
+        X_decodes = auto_encoder.decode(X_codes, training=True)
+        Y_decodes = auto_encoder.decode(Y_codes, training=True)
+        
+        print(np.shape(X_decodes), np.shape(Y_decodes))
+        all_decodes =  np.concatenate((X_decodes, Y_decodes))
+        all_inputs =  np.concatenate((X, Y))
 
-            similarity_distance /= len(codes) - 1
+        similarity_distance = MAE(ED(X_codes - Y_codes), distance)
 
-        # print(loss(input, decodes), " ", similarity_distance)
-        loss = 0.000001 * loss(input, decodes) + similarity_coff * similarity_distance
-        # loss = similarity_coff * similarity_distance
+        loss = loss(all_inputs, all_decodes) + similarity_distance
 
         trainables = auto_encoder.encode.trainable_variables + auto_encoder.decode.trainable_variables
 
@@ -160,3 +159,27 @@ def train_step(input, auto_encoder, similarity_coff = 0.2, optimizer=_optimizer,
     optimizer.apply_gradients(zip(gradients, trainables))
     return loss
 
+# def train_step(input, auto_encoder, optimizer=_optimizer, loss = _mse_loss):
+#     with tf.GradientTape() as tape:
+#         codes = auto_encoder.encode(input, training=True)
+#         decodes = auto_encoder.decode(codes, training=True)
+        
+#         similarity_distance = 0
+#         # distance, path = fastdtw(codes, input, dist=euclidean)
+#         for i in range(len(codes) - 1):
+#             # print(flatten_and_normalize(input[i]))
+#             # print(flatten_and_normalize(codes[i]))
+#             input_a, input_b = flatten_and_normalize(input[i]), flatten_and_normalize(input[i + 1])
+#             codes_a, codes_b = flatten_and_normalize(codes[i]), flatten_and_normalize(codes[i + 1])
+#             similarity_distance += abs(euclidean(codes_a, codes_b) - SBD(input_a, input_b))
+
+#         similarity_distance /= len(codes) - 1
+
+#         # print(loss(input, decodes), similarity_distance)
+#         loss = loss(input, decodes) + similarity_distance
+
+#         trainables = auto_encoder.encode.trainable_variables + auto_encoder.decode.trainable_variables
+
+#     gradients = tape.gradient(loss, trainables)
+#     optimizer.apply_gradients(zip(gradients, trainables))
+#     return loss
