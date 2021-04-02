@@ -4,7 +4,7 @@ import random
 from kshape import _sbd as SBD
 from scipy.spatial.distance import euclidean
 from fastdtw import fastdtw
-from sklearn.metrics import mean_absolute_error as MAE
+# from  import mean_absolute_error as MAE
 
 class Encoder(tf.keras.Model):
 
@@ -134,24 +134,30 @@ def flatten_and_normalize(tensor):
     return normalize(tf.reshape(tensor,[-1]))
 
 def ED(X):
-    return np.linalg.norm(X, axis = 1)
+    return tf.math.reduce_euclidean_norm(X, 1)
 
 # @tf.function
 def train_step(X, Y, distance, auto_encoder, optimizer=_optimizer, loss = _mse_loss):
     with tf.GradientTape() as tape:
+        # print(np.shape(X))
         X_codes = auto_encoder.encode(X, training=True)
         Y_codes = auto_encoder.encode(Y, training=True)
-        
+
         X_decodes = auto_encoder.decode(X_codes, training=True)
         Y_decodes = auto_encoder.decode(Y_codes, training=True)
         
-        print(np.shape(X_decodes), np.shape(Y_decodes))
-        all_decodes =  np.concatenate((X_decodes, Y_decodes))
-        all_inputs =  np.concatenate((X, Y))
+        # all_decodes =  np.concatenate((X_decodes, Y_decodes))
+        # all_inputs =  np.concatenate((X, Y))
+        # print(ED(X_codes - Y_codes))
+        # print(distance)
+        # print(X_codes, Y_codes)
+        # return
+        subtraction = ED(X_codes - Y_codes) - distance
+        similarity_loss = tf.math.reduce_sum(subtraction) / np.shape(X)[0]
+        reconstruction_loss = loss(X, X_decodes) + loss(Y, Y_decodes)
+        print("\nrec_loss:", reconstruction_loss, "simi_loss:", similarity_loss)
 
-        similarity_distance = MAE(ED(X_codes - Y_codes), distance)
-
-        loss = loss(all_inputs, all_decodes) + similarity_distance
+        loss = reconstruction_loss + similarity_loss
 
         trainables = auto_encoder.encode.trainable_variables + auto_encoder.decode.trainable_variables
 

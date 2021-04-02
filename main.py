@@ -11,7 +11,8 @@ valid_datasets = []
 for dataset in all_datasets:
     if py_ts_data.data_info(dataset)['n_timestamps'] > 0 and \
         py_ts_data.data_info(dataset)['n_variables'] == 1:
-        valid_datasets.append(dataset)
+        # valid_datasets.append(dataset)
+        # print(py_ts_data.data_info(dataset))
         print(dataset, py_ts_data.data_info(dataset)['train_size'])
 
 print(valid_datasets)
