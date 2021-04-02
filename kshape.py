@@ -53,7 +53,8 @@ def _ncc_c(x, y):
     >>> _ncc_c([1,2,3], [-1,-1,-1])
     array([-0.15430335, -0.46291005, -0.9258201 , -0.77151675, -0.46291005])
     """
-    den = np.array(norm(x.numpy()) * norm(y.numpy()))
+    #den = np.array(norm(x.numpy()) * norm(y.numpy()))
+    den = np.array(norm(np.array(x)) * norm(np.array(y)))
     den[den == 0] = np.Inf
 
     x_len = len(x)

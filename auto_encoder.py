@@ -4,6 +4,7 @@ import random
 from kshape import _sbd as SBD
 from scipy.spatial.distance import euclidean
 from fastdtw import fastdtw
+# from  import mean_absolute_error as MAE
 
 class Encoder(tf.keras.Model):
 
@@ -132,26 +133,32 @@ def flatten_and_normalize(tensor):
     # print(tf.reshape(tensor,[-1]))
     return normalize(tf.reshape(tensor,[-1]))
 
+def ED(X):
+    return tf.math.reduce_euclidean_norm(X, 1)
 
 # @tf.function
-def train_step(input, auto_encoder, optimizer=_optimizer, loss = _mse_loss):
+def train_step(X, Y, distance, auto_encoder, optimizer=_optimizer, loss = _mse_loss):
     with tf.GradientTape() as tape:
-        codes = auto_encoder.encode(input, training=True)
-        decodes = auto_encoder.decode(codes, training=True)
+        # print(np.shape(X))
+        X_codes = auto_encoder.encode(X, training=True)
+        Y_codes = auto_encoder.encode(Y, training=True)
+
+        X_decodes = auto_encoder.decode(X_codes, training=True)
+        Y_decodes = auto_encoder.decode(Y_codes, training=True)
         
-        similarity_distance = 0
-        # distance, path = fastdtw(codes, input, dist=euclidean)
-        for i in range(len(codes) - 1):
-            # print(flatten_and_normalize(input[i]))
-            # print(flatten_and_normalize(codes[i]))
-            input_a, input_b = flatten_and_normalize(input[i]), flatten_and_normalize(input[i + 1])
-            codes_a, codes_b = flatten_and_normalize(codes[i]), flatten_and_normalize(codes[i + 1])
-            similarity_distance += abs(euclidean(codes_a, codes_b) - SBD(input_a, input_b))
+        # all_decodes =  tf.concat([X_decodes, Y_decodes], axis = 0)
+        # all_inputs =  tf.concat([X, Y], axis = 0)
+        # print(ED(X_codes - Y_codes))
+        # print(distance)
+        # print(X_codes, Y_codes)
+        # return
+        subtraction = ED(X_codes - Y_codes) - distance
+        similarity_loss = tf.math.reduce_sum(subtraction) / np.shape(X)[0]
+        reconstruction_loss = loss(X, X_decodes) + loss(Y, Y_decodes)
+        # reconstruction_loss = loss(all_decodes, all_inputs)
+        print("\nrec_loss:", reconstruction_loss, "simi_loss:", similarity_loss)
 
-        similarity_distance /= len(codes) - 1
-
-        # print(loss(input, decodes), similarity_distance)
-        loss = loss(input, decodes) + similarity_distance
+        loss = reconstruction_loss + similarity_loss
 
         trainables = auto_encoder.encode.trainable_variables + auto_encoder.decode.trainable_variables
 
@@ -159,3 +166,27 @@ def train_step(input, auto_encoder, optimizer=_optimizer, loss = _mse_loss):
     optimizer.apply_gradients(zip(gradients, trainables))
     return loss
 
+# def train_step(input, auto_encoder, optimizer=_optimizer, loss = _mse_loss):
+#     with tf.GradientTape() as tape:
+#         codes = auto_encoder.encode(input, training=True)
+#         decodes = auto_encoder.decode(codes, training=True)
+        
+#         similarity_distance = 0
+#         # distance, path = fastdtw(codes, input, dist=euclidean)
+#         for i in range(len(codes) - 1):
+#             # print(flatten_and_normalize(input[i]))
+#             # print(flatten_and_normalize(codes[i]))
+#             input_a, input_b = flatten_and_normalize(input[i]), flatten_and_normalize(input[i + 1])
+#             codes_a, codes_b = flatten_and_normalize(codes[i]), flatten_and_normalize(codes[i + 1])
+#             similarity_distance += abs(euclidean(codes_a, codes_b) - SBD(input_a, input_b))
+
+#         similarity_distance /= len(codes) - 1
+
+#         # print(loss(input, decodes), similarity_distance)
+#         loss = loss(input, decodes) + similarity_distance
+
+#         trainables = auto_encoder.encode.trainable_variables + auto_encoder.decode.trainable_variables
+
+#     gradients = tape.gradient(loss, trainables)
+#     optimizer.apply_gradients(zip(gradients, trainables))
+#     return loss
