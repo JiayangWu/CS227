@@ -146,8 +146,8 @@ def train_step(X, Y, distance, auto_encoder, optimizer=_optimizer, loss = _mse_l
         X_decodes = auto_encoder.decode(X_codes, training=True)
         Y_decodes = auto_encoder.decode(Y_codes, training=True)
         
-        # all_decodes =  np.concatenate((X_decodes, Y_decodes))
-        # all_inputs =  np.concatenate((X, Y))
+        # all_decodes =  tf.concat([X_decodes, Y_decodes], axis = 0)
+        # all_inputs =  tf.concat([X, Y], axis = 0)
         # print(ED(X_codes - Y_codes))
         # print(distance)
         # print(X_codes, Y_codes)
@@ -155,6 +155,7 @@ def train_step(X, Y, distance, auto_encoder, optimizer=_optimizer, loss = _mse_l
         subtraction = ED(X_codes - Y_codes) - distance
         similarity_loss = tf.math.reduce_sum(subtraction) / np.shape(X)[0]
         reconstruction_loss = loss(X, X_decodes) + loss(Y, Y_decodes)
+        # reconstruction_loss = loss(all_decodes, all_inputs)
         print("\nrec_loss:", reconstruction_loss, "simi_loss:", similarity_loss)
 
         loss = reconstruction_loss + similarity_loss
