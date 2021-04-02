@@ -1,5 +1,6 @@
 import tensorflow as tf
 import numpy as np
+import random
 from kshape import _sbd as SBD
 from scipy.spatial.distance import euclidean
 from fastdtw import fastdtw
@@ -21,6 +22,7 @@ class Encoder(tf.keras.Model):
         for f, k in zip(filters, kernel_sizes):
             l = tf.keras.layers.Conv1D(f, k, activation="relu")
             b = tf.keras.layers.BatchNormalization()
+            # d = tf.keras.layers.Dropout(0.2)
             self.convs.append(l)
             self.norms.append(b)
             output_len = output_len - (k-1)
@@ -111,21 +113,6 @@ class AutoEncoder:
 
         self.loss = loss
         self.optimizer = optimizer
-
-def normalize_3d(data):
-    """
-    Z-normalize data with shape (x, y, z)
-    x = # of timeseries
-    y = len of each timeseries
-    z = vars in each timeseres
-    
-    s.t. each array in [., :, .] (i.e. each timeseries variable)
-    is zero-mean and unit stddev
-    """
-    sz, l, d = data.shape
-    means = np.broadcast_to(np.mean(data, axis=1)[:, None, :], (sz, l, d))
-    stddev = np.broadcast_to(np.std(data, axis=1)[:, None, :], (sz, l, d)) 
-    return (data - means)/stddev
     
 def normalize(data):
     """
@@ -145,6 +132,7 @@ def flatten_and_normalize(tensor):
     # print(tf.reshape(tensor,[-1]))
     return normalize(tf.reshape(tensor,[-1]))
 
+
 # @tf.function
 def train_step(input, auto_encoder, optimizer=_optimizer, loss = _mse_loss):
     with tf.GradientTape() as tape:
@@ -154,16 +142,16 @@ def train_step(input, auto_encoder, optimizer=_optimizer, loss = _mse_loss):
         similarity_distance = 0
         # distance, path = fastdtw(codes, input, dist=euclidean)
         for i in range(len(codes) - 1):
-            # print(input[i], input[i + 1])
-            # print(codes[i], codes[i + 1])
+            # print(flatten_and_normalize(input[i]))
+            # print(flatten_and_normalize(codes[i]))
             input_a, input_b = flatten_and_normalize(input[i]), flatten_and_normalize(input[i + 1])
             codes_a, codes_b = flatten_and_normalize(codes[i]), flatten_and_normalize(codes[i + 1])
-            similarity_distance += abs(SBD(codes_a, codes_b)[0] - SBD(input_a, input_b)[0])
+            similarity_distance += abs(euclidean(codes_a, codes_b) - SBD(input_a, input_b))
 
         similarity_distance /= len(codes) - 1
 
         # print(loss(input, decodes), similarity_distance)
-        loss = 0.01 * loss(input, decodes) + 0.99 * similarity_distance
+        loss = loss(input, decodes) + similarity_distance
 
         trainables = auto_encoder.encode.trainable_variables + auto_encoder.decode.trainable_variables
 
