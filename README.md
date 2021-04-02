@@ -10,7 +10,6 @@
 
 1. Data Augmentation(both random and same)
 2. Pre-calculated SBD
-3. Pre-randomly select pairs
 
 ## Bugs fixed so far:
 1. too few epochs, previously 50, now 500
