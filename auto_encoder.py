@@ -137,7 +137,7 @@ def ED(X):
     return tf.math.reduce_euclidean_norm(X, 1)
 
 # @tf.function
-def train_step(X, Y, distance, auto_encoder, optimizer=_optimizer, loss = _mse_loss):
+def train_step(X, Y, distance, auto_encoder, optimizer=_optimizer, loss = _mse_loss, alpha = 1):
     with tf.GradientTape() as tape:
         # print(np.shape(X))
         X_codes = auto_encoder.encode(X, training=True)
@@ -152,13 +152,15 @@ def train_step(X, Y, distance, auto_encoder, optimizer=_optimizer, loss = _mse_l
         # print(distance)
         # print(X_codes, Y_codes)
         # return
-        subtraction = ED(X_codes - Y_codes) - distance
-        similarity_loss = tf.math.reduce_sum(subtraction) / np.shape(X)[0]
+        similarity_loss = 0
+        if alpha > 0:
+            subtraction = ED(X_codes - Y_codes) - distance
+            similarity_loss = tf.math.reduce_sum(subtraction) / np.shape(X)[0]
         reconstruction_loss = loss(X, X_decodes) + loss(Y, Y_decodes)
         # reconstruction_loss = loss(all_decodes, all_inputs)
         print("\nrec_loss:", reconstruction_loss, "simi_loss:", similarity_loss)
 
-        loss = reconstruction_loss + similarity_loss
+        loss = reconstruction_loss + alpha * similarity_loss
 
         trainables = auto_encoder.encode.trainable_variables + auto_encoder.decode.trainable_variables
 
