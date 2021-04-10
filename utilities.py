@@ -28,7 +28,7 @@ def normalize(data):
 
 def augment_data(X_train, K = 1000, alpha = 0.1):
     # K is the target size, alpha is the fluctuated rate of fabricated data.
-    repeat_times = K // len(X_train)
+    repeat_times = K // len(X_train) - 1
     new_x_data = None
     X_train_mean = np.mean(X_train)
     for _ in range(repeat_times):

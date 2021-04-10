@@ -11,8 +11,8 @@ from kshape import _sbd as SBD
 from auto_encoder import AutoEncoder, train_step
 from utilities import min_max, normalize, augment_data
 
-dataset = "Plane"
-EPOCHS = 10
+dataset = "GunPoint"
+EPOCHS = 500
 data_augmentation = False
 
 X_train, y_train, X_test, y_test, info = py_ts_data.load_data(dataset, variables_as_channels=True)
@@ -101,7 +101,7 @@ print("The training time is:", (time.time() - t1) / 60)
 plt.xlabel("epoch starting from 5")
 plt.ylabel("loss")
 plt.title("Loss vs epoch")
-print(loss_history[5:])
+# print(loss_history[5:])
 plt.plot(loss_history[5:])
 # plt.show()
 if not os.path.isdir("./images/" + dataset):
