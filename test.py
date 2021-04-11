@@ -1,34 +1,34 @@
+#### Settings ######
 import py_ts_data
 import time
-import random
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
-import datetime
-import math
 import os
 from kshape import _sbd as SBD
 from auto_encoder import AutoEncoder, train_step
 from utilities import min_max, normalize, augment_data, generateRandomPairs, calculatePreSBD
 
-#### Settings ######
-dataset = "GunPoint"
+##### settings below
+dataset = "UMD"
 EPOCHS = 500
+enable_data_augmentation = False
+percentage_similarity_loss = 0
+LSTM = False
+##### settings above
+
 X_train, y_train, X_test, y_test, info = py_ts_data.load_data(dataset, variables_as_channels=True)
+
 print("Dataset shape: Train: {}, Test: {}".format(X_train.shape, X_test.shape))
 print(np.shape(y_train))
 
-
-enable_data_augmentation = True
-percentage_similarity_loss = 1
-
-LSTM = False
 if enable_data_augmentation or len(X_train) >= 1000:
-    # LSTM will greatly extend the training time
+    # LSTM will greatly extend the training time, so disable it if we have large data
     LSTM = False
 
 
-title = "Dataset:{}-DA:{}-CoefSimilar:{}-LSTM:{}".format(dataset, enable_data_augmentation, percentage_similarity_loss, LSTM)
+#### don't change two lines below
+title = "{}-DA:{}-CoefSimilar:{}-LSTM:{}".format(dataset, enable_data_augmentation, percentage_similarity_loss, LSTM)
 enable_same_noise = False
 
 ##### Preprocess Data ####
@@ -89,7 +89,7 @@ plt.plot(X_test[0], label = "Original TS")
 plt.plot(decoded_test[0], label = "reconstructed TS")
 
 plt.savefig("./images/" + dataset + "/" + title + "-reconstruction.png")
-plt.show()
+# plt.show()
 
 losses = []
 for ground, predict in zip(X_test, decoded_test):

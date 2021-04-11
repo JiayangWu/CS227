@@ -1,0 +1,1 @@
+small_datasets = ['ArrowHead', 'BME', 'CBF', 'Chinatown', 'Coffee', 'DiatomSizeReduction', 'ECG200', 'ECGFiveDays', 'FaceFour', 'FreezerSmallTrain', 'Fungi', 'GunPoint', 'ItalyPowerDemand', 'MoteStrain', 'SmoothSubspace', 'SonyAIBORobotSurface1', 'SonyAIBORobotSurface2', 'Symbols', 'TwoLeadECG', 'UMD']
