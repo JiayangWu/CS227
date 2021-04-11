@@ -21,10 +21,10 @@ class Encoder(tf.keras.Model):
 
         for f, k in zip(filters, kernel_sizes):
             l = tf.keras.layers.Conv1D(f, k, activation="relu")
-            b = tf.keras.layers.BatchNormalization()
+            # b = tf.keras.layers.BatchNormalization()
             # d = tf.keras.layers.Dropout(0.2)
             self.convs.append(l)
-            self.norms.append(b)
+            # self.norms.append(b)
             output_len = output_len - (k-1)
             output_channels = f
 
@@ -36,10 +36,14 @@ class Encoder(tf.keras.Model):
     def call(self, inputs, training=False, LSTM = False):
 
         x = self.convs[0](inputs)
-        x = self.norms[0](x)
-        for conv, norm in zip(self.convs[1:], self.norms[1:]):
+        # x = self.norms[0](x)
+        # for conv, norm in zip(self.convs[1:], self.norms[1:]):
+        #     x = conv(x)
+        #     x = norm(x, training=training)
+
+        for conv in self.convs[1:]:
             x = conv(x)
-            x = norm(x, training=training)
+
         assert x.shape[1:] == self.last_kernel_shape
         # print(x.shape)
         if LSTM or self.LSTM_layer:
@@ -65,17 +69,17 @@ class Decoder(tf.keras.Model):
         flat_len = last_kernel_shape[0] * last_kernel_shape[1]
 
         self.expand = tf.keras.layers.Dense(flat_len)
-        self.LSTM = tf.keras.layers.LSTM(LSTM_size, return_sequences=True, return_state=False)
+        # self.LSTM = tf.keras.layers.LSTM(LSTM_size, return_sequences=True, return_state=False)
         self.reshape = tf.keras.layers.Reshape(last_kernel_shape)
 
         self.convs = []
-        self.norms = []
+        # self.norms = []
 
         for i, (f, k) in enumerate(zip(filters, kernel_sizes)):
             l = tf.keras.layers.Conv1DTranspose(f, k)
-            b = tf.keras.layers.BatchNormalization()
+            # b = tf.keras.layers.BatchNormalization()
             self.convs.append(l)
-            self.norms.append(b)
+            # self.norms.append(b)
         
         
 
@@ -86,16 +90,18 @@ class Decoder(tf.keras.Model):
         # print(np.shape(x))
         x = self.reshape(x)
         # print(np.shape(x), "hjkhkhkj")
-        x = self.LSTM(x)
+        # x = self.LSTM(x)
         # print(np.shape(x), "jlkjlkjl")
-        for conv, norm in zip(self.convs, self.norms):
-            x = norm(x, training=training)
+        # for conv, norm in zip(self.convs, self.norms):
+            # x = norm(x, training=training)
+            # x = conv(x)
+        for conv in self.convs:
             x = conv(x)
         assert self.expected_output_shape == x.shape[1:]
         # print(np.shape(x), "Dsadasdasdasdasdas")
         return x
 
-_optimizer = tf.keras.optimizers.Nadam(learning_rate=0.00015)
+_optimizer = tf.keras.optimizers.Adam(learning_rate=0.00015)
 _mse_loss = tf.keras.losses.MeanSquaredError()
 
 class AutoEncoder:

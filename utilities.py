@@ -1,4 +1,6 @@
 import numpy as np
+from kshape import _sbd as SBD
+
 def min_max(data, feature_range=(0, 1)):
     """
     implements min-max scaler
@@ -9,8 +11,6 @@ def min_max(data, feature_range=(0, 1)):
     min_vals = data.min(axis=1)[:, None, :]
     X_std = (data - min_vals) / (max_vals - min_vals)
     return X_std * (max_v - min_v) + min_v
-
-
 
 def normalize(data):
     """
@@ -26,7 +26,7 @@ def normalize(data):
     stddev = np.std(data)
     return (data - means)/stddev
 
-def augment_data(X_train, K = 1000, alpha = 0.1):
+def augment_data(X_train, K = 1000, alpha = 0.1, enable_same_noise = False):
     # K is the target size, alpha is the fluctuated rate of fabricated data.
     repeat_times = K // len(X_train) - 1
     new_x_data = None
@@ -34,11 +34,15 @@ def augment_data(X_train, K = 1000, alpha = 0.1):
     for _ in range(repeat_times):
         #for x_series, y_series in zip(X_train, y_train):
         for x_series in X_train:
-            #same noise 0.1 * mean: x_noise = 0.2 * (np.random.random(x_series.shape) - 0.5) * X_train_mean
-
-            x_noise = 1 - 0.1 * (np.random.random(x_series.shape) - 0.5)
-
-            new_x_series = np.reshape(x_series * x_noise, (1, len(x_series), 1))
+            # print(enable_same_noise)
+            if enable_same_noise:
+                # same noise 0.1 * mean: 
+                random = np.random.random(x_series.shape) # [0 - 1]
+                x_noise = 0#((random + 1)/10) * X_train_mean # [0.1, 0.2] * mean
+                new_x_series = np.reshape(x_series * x_noise, (1, len(x_series), 1))
+            else:
+                x_noise = 1 - 0.1 * (np.random.random(x_series.shape) - 0.5)
+                new_x_series = np.reshape(x_series * x_noise, (1, len(x_series), 1))
 
             if new_x_data is None:
                 new_x_data = new_x_series
@@ -51,4 +55,31 @@ def augment_data(X_train, K = 1000, alpha = 0.1):
 
     return X_train
 
+
+def generateRandomPairs(K, X_train):
+    # indices1 = np.random.choice(num_train, int(num_train * math.log2(num_train)))
+    # indices2 = np.random.choice(num_train, int(num_train * math.log2(num_train)))
+    indices1 = np.random.choice(K, K)
+    indices2 = np.random.choice(K, K)
+
+    X = X_train[indices1]
+    Y = X_train[indices2]
+    print('X shape: ', X.shape)
+    print('Y shape: ', Y.shape)
+
+    return X, Y
     
+
+def calculatePreSBD(X, Y):
+    normalized_X = normalize(X)
+    normalized_Y = normalize(Y)
+
+    normalized_X_2d = normalize(X).squeeze()
+    normalized_Y_2d = normalize(Y).squeeze()
+
+    distance = []
+    for x, y in zip(normalized_X_2d, normalized_Y_2d):
+        distance.append(SBD(np.array(x), np.array(y)))
+    distance = np.array(distance)
+    print('distance shape: ', distance.shape)
+    return normalized_X, normalized_Y, distance
