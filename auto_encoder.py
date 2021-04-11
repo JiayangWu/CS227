@@ -153,7 +153,7 @@ def train_step(X, Y, distance, auto_encoder, optimizer=_optimizer, loss = _mse_l
             similarity_loss = tf.math.reduce_sum(subtraction) / np.shape(distance)
         reconstruction_loss = loss(X, X_decodes) + loss(Y, Y_decodes)
 
-        print("\nrec_loss:", reconstruction_loss, "simi_loss:", similarity_loss)
+        # print("\nrec_loss:", reconstruction_loss, "simi_loss:", similarity_loss)
         loss = reconstruction_loss + alpha * similarity_loss
 
         trainables = auto_encoder.encode.trainable_variables + auto_encoder.decode.trainable_variables

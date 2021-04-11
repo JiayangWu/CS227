@@ -1,0 +1,83 @@
+[33mcommit c0337b2a1eedd45536e2dc42632de4054b417da2[m[33m ([m[1;36mHEAD -> [m[1;32mpre-SBD[m[33m, [m[1;31morigin/pre-SBD[m[33m)[m
+Author: JiayangWu <530081999@qq.com>
+Date:   Sat Apr 10 23:13:58 2021 -0400
+
+    update notebook, add output module, fix nn-score bug
+
+[33mcommit 0cde203df32adacfe7bb9c9b622227cbe9eaf4cb[m
+Author: JiayangWu <530081999@qq.com>
+Date:   Fri Apr 9 20:01:20 2021 -0400
+
+    LSTM in both encoder and decoder
+
+[33mcommit b237095c3bdafd40457fc686325044c87ccad9f8[m
+Author: JiayangWu <530081999@qq.com>
+Date:   Fri Apr 9 15:14:43 2021 -0400
+
+    add output module
+
+[33mcommit 2e1c015a72e3f69810d81e84cc52d8d6cbc3341a[m
+Author: JiayangWu <530081999@qq.com>
+Date:   Fri Apr 2 15:51:11 2021 -0400
+
+    update python notebook
+
+[33mcommit 59e5677a5f379eb7fb5be0e1df7a8cabcd14b9ce[m
+Author: JiayangWu <530081999@qq.com>
+Date:   Fri Apr 2 15:39:02 2021 -0400
+
+    remove np + update train_step
+
+[33mcommit d405b3217afea42019fb669e343e998d140dd5f5[m
+Author: JiayangWu <530081999@qq.com>
+Date:   Thu Apr 1 16:53:23 2021 -0400
+
+    implement np-based ED
+
+[33mcommit 75e5ccea22d1d4cb1f6392ba60da0ac53976c92a[m[33m ([m[1;32mData-Augmentation[m[33m)[m
+Author: JiayangWu <530081999@qq.com>
+Date:   Thu Apr 1 15:33:33 2021 -0400
+
+    before merge
+
+[33mcommit a4ea01cda9a74c531f58850e25470ba47452c9e1[m
+Author: JiayangWu <530081999@qq.com>
+Date:   Mon Mar 22 17:37:34 2021 -0400
+
+    after group pre
+
+[33mcommit 4d65a8bb970e47d9b1538139525f91e3b6df6892[m
+Author: JiayangWu <530081999@qq.com>
+Date:   Sat Mar 20 00:47:54 2021 -0400
+
+    finish augmentation but no better result
+
+[33mcommit f9c224c3817ab69b6ea8fda6e75faab6572f61ef[m
+Author: JiayangWu <530081999@qq.com>
+Date:   Fri Mar 19 22:49:50 2021 -0400
+
+    after checkout
+
+[33mcommit 2dc34f53e849f73d99ab175f9001250964e54381[m
+Author: JiayangWu <530081999@qq.com>
+Date:   Mon Mar 15 18:43:40 2021 -0400
+
+    test to show distance loss is not decreasing with training
+
+[33mcommit 27724b6aca13d47c8ee50f8315fb657226ce8632[m
+Author: JiayangWu <530081999@qq.com>
+Date:   Fri Mar 12 23:16:00 2021 -0500
+
+    better results with Libras and updated normalizing method
+
+[33mcommit f01d8e83ffaee39172851fa9ba4e67b0a3280eb5[m
+Author: JiayangWu <530081999@qq.com>
+Date:   Fri Mar 12 23:00:28 2021 -0500
+
+    a reasonable loss plot but unreasonable nn score)
+
+[33mcommit 9e082bcca2b0aca3e71a055e3fc7295e632b58f3[m
+Author: JiayangWu <530081999@qq.com>
+Date:   Fri Mar 12 21:15:26 2021 -0500
+
+    start
