@@ -1,0 +1,4 @@
+ArrowHead,False,0,False,500,SBD,2.01,7.28
+ArrowHead,False,0.2,False,500,SBD,3.41,4.91
+ArrowHead,False,-1,False,500,SBD,1.9,7.45
+ArrowHead,True,0,False,500,SBD,1.83,7.45

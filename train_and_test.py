@@ -75,6 +75,8 @@ def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarit
     if save_output:
         if not os.path.isdir("./result/" + dataset):
             os.mkdir("./result/" + dataset)
+            with open("./result/" + dataset + "/record.txt", "a") as f:
+                f.write("Dataset, Data Augmentation, Coefficient of Similarity Loss, LSTM, EPOCHS, Distance Measure, L2 Distance, 10-nn score\n")
         
         plt.savefig("./result/" + dataset + "/" + title + "-loss.png")
 
@@ -117,7 +119,9 @@ def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarit
 
     ten_nn_score = np.array(result).mean()
     print("10-nn score is:", ten_nn_score)
-    if save_output:
-        with open("./result/" + dataset + "/" + title + "-record.txt", "w") as f:
-            f.write(" ".join([str(round(L2_distance,2)), str(round(ten_nn_score,2))]))
+    # if save_output:
+    #     with open("./result/" + dataset + "/" + title + "-record.txt", "w") as f:
+    #         f.write(" ".join([str(round(L2_distance,2)), str(round(ten_nn_score,2))]))
 
+    with open("./result/" + dataset + "/record.txt", "a") as f:
+        f.write(",".join([dataset, str(enable_data_augmentation), str(percentage_similarity_loss), str(LSTM), str(EPOCHS), "SBD", str(round(L2_distance,2)), str(round(ten_nn_score,2))]) + "\n")

@@ -1,0 +1,5 @@
+Dataset, Data Augmentation, Coefficient of Similarity Loss, LSTM, EPOCHS, Distance Measure, L2 Distance, 10-nn score
+DiatomSizeReduction,False,0,False,500,SBD,0.93,7.12
+DiatomSizeReduction,False,0.2,False,500,SBD,2.51,3.29
+DiatomSizeReduction,False,-1,False,500,SBD,1.04,7.19
+DiatomSizeReduction,True,0,False,500,SBD,0.79,7.88
