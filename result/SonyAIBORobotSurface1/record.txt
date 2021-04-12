@@ -3,3 +3,10 @@ SonyAIBORobotSurface1,False,0,False,500,SBD,3.18,4.39
 SonyAIBORobotSurface1,False,0.2,False,500,SBD,3.54,3.78
 SonyAIBORobotSurface1,False,1,False,500,SBD,3.49,3.78
 SonyAIBORobotSurface1,False,-1,False,500,SBD,3.18,4.31
+SonyAIBORobotSurface1,True,0,False,500,SBD,2.9,4.56
+SonyAIBORobotSurface1,True,0.5,False,300,SBD,3.44,4.11
+SonyAIBORobotSurface1,True,1,False,300,SBD,3.44,4.18
+SonyAIBORobotSurface1,False,0,False,300,SBD,3.03,4.48
+SonyAIBORobotSurface1,False,0,False,300,SBD,3.03,4.44
+SonyAIBORobotSurface1,False,0.5,False,300,SBD,3.47,3.94
+SonyAIBORobotSurface1,False,0,True,300,SBD,4.63,2.35

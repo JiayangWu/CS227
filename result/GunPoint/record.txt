@@ -4,3 +4,10 @@ GunPoint,False,1,False,500,SBD,1.91,6.49
 GunPoint,False,0.2,False,500,SBD,1.59,7.63
 GunPoint,False,0,False,500,SBD,0.82,7.83
 GunPoint,False,-1,False,500,SBD,0.88,7.64
+GunPoint,True,0,False,500,SBD,0.76,8.01
+GunPoint,True,0.5,False,300,SBD,1.71,7.45
+GunPoint,True,1,False,300,SBD,1.48,7.65
+GunPoint,False,0,False,300,SBD,0.97,7.85
+GunPoint,False,0,False,300,SBD,0.93,7.78
+GunPoint,False,0.5,False,300,SBD,1.62,6.48
+GunPoint,False,0,True,300,SBD,1.88,6.54

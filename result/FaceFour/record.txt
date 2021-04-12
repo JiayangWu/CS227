@@ -4,3 +4,8 @@ FaceFour,False,0.2,False,500,SBD,11.57,5.99
 FaceFour,False,0.5,False,500,SBD,11.51,6.2
 FaceFour,False,-1,False,500,SBD,10.81,6.81
 FaceFour,True,0,False,500,SBD,9.82,7.05
+FaceFour,True,0.5,False,300,SBD,10.67,6.22
+FaceFour,True,1,False,300,SBD,10.83,6.17
+FaceFour,False,0,False,300,SBD,10.51,6.52
+FaceFour,False,0,False,300,SBD,10.2,6.95
+FaceFour,False,0,True,300,SBD,14.99,4.68
