@@ -1,0 +1,6 @@
+Dataset, Data Augmentation, Coefficient of Similarity Loss, LSTM, EPOCHS, Distance Measure, L2 Distance, 10-nn score
+ItalyPowerDemand,False,0,False,500,SBD,0.46,5.97
+ItalyPowerDemand,False,0.2,False,500,SBD,0.69,5.33
+ItalyPowerDemand,False,0.5,False,500,SBD,0.76,4.85
+ItalyPowerDemand,False,1,False,500,SBD,0.77,4.33
+ItalyPowerDemand,False,-1,False,500,SBD,0.49,5.86

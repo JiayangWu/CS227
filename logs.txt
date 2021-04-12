@@ -1,0 +1,14 @@
+GunPoint,0.2GunPoint,0.5GunPoint,1GunPoint,0.5GunPoint,1Coffee,0.2ECG200,0.2FreezerSmallTrain,0.2GunPoint,0.2SonyAIBORobotSurface2,0.2Symbols,0.2TwoLeadECG,0.2ArrowHead,0.5
+CBF,0.5
+Coffee,0.5
+DiatomSizeReduction,0.5
+ECG200,0.5
+GunPoint,0.5
+SonyAIBORobotSurface1,0.5
+TwoLeadECG,0.5
+ArrowHead,1
+DiatomSizeReduction,1
+FaceFour,1
+GunPoint,1
+MoteStrain,1
+Symbols,1

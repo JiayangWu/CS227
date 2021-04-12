@@ -1,0 +1,5 @@
+Dataset, Data Augmentation, Coefficient of Similarity Loss, LSTM, EPOCHS, Distance Measure, L2 Distance, 10-nn score
+SonyAIBORobotSurface2,False,0,False,500,SBD,3.71,4.76
+SonyAIBORobotSurface2,False,0.5,False,500,SBD,4.24,3.96
+SonyAIBORobotSurface2,False,1,False,500,SBD,4.23,3.95
+SonyAIBORobotSurface2,False,-1,False,500,SBD,3.74,4.88

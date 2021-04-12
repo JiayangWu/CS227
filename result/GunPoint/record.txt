@@ -1,0 +1,6 @@
+Dataset, Data Augmentation, Coefficient of Similarity Loss, LSTM, EPOCHS, Distance Measure, L2 Distance, 10-nn score
+GunPoint,False,0,False,500,SBD,0.91,8.23
+GunPoint,False,1,False,500,SBD,1.91,6.49
+GunPoint,False,0.2,False,500,SBD,1.59,7.63
+GunPoint,False,0,False,500,SBD,0.82,7.83
+GunPoint,False,-1,False,500,SBD,0.88,7.64

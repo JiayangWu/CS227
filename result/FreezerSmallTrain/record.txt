@@ -1,0 +1,5 @@
+Dataset, Data Augmentation, Coefficient of Similarity Loss, LSTM, EPOCHS, Distance Measure, L2 Distance, 10-nn score
+FreezerSmallTrain,False,0,False,500,SBD,2.67,5.47
+FreezerSmallTrain,False,0.5,False,500,SBD,3.07,6.25
+FreezerSmallTrain,False,1,False,500,SBD,3.18,6.23
+FreezerSmallTrain,False,-1,False,500,SBD,2.43,5.13

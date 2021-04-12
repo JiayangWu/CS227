@@ -1,0 +1,6 @@
+Dataset, Data Augmentation, Coefficient of Similarity Loss, LSTM, EPOCHS, Distance Measure, L2 Distance, 10-nn score
+Fungi,False,0,False,500,SBD,79.74,6.48
+Fungi,False,0.2,False,500,SBD,137.71,6.53
+Fungi,False,0.5,False,500,SBD,154.69,6.27
+Fungi,False,1,False,500,SBD,113.69,6.05
+Fungi,False,-1,False,500,SBD,79.28,6.57
