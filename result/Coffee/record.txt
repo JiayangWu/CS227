@@ -3,3 +3,8 @@ Coffee,False,0,False,500,SBD,0.99,8.11
 Coffee,False,1,False,500,SBD,1.69,4.82
 Coffee,False,-1,False,500,SBD,0.86,8.5
 Coffee,True,0,False,500,SBD,1.57,7.71
+Coffee,True,0.5,False,300,SBD,1.66,5.82
+Coffee,True,1,False,300,SBD,1.66,6.11
+Coffee,False,0,False,300,SBD,1.68,7.54
+Coffee,False,0,False,300,SBD,1.64,6.96
+Coffee,False,0,True,300,SBD,1.7,5.96
