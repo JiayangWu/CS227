@@ -1,0 +1,8 @@
+Dataset, Data Augmentation, Coefficient of Similarity Loss, LSTM, EPOCHS, Distance Measure, L2 Distance, 10-nn score
+Chinatown,False,0,False,300,L2,0.56,5.2
+Chinatown,False,0.2,False,300,L2,0.77,4.37
+Chinatown,False,0.5,False,300,L2,1.16,2.44
+Chinatown,False,1,False,300,L2,1.44,1.52
+Chinatown,True,0,False,300,L2,0.5,5.49
+Chinatown,True,0.5,False,300,L2,0.9,4.58
+Chinatown,True,1,False,300,L2,1.46,1.27

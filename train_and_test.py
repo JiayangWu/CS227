@@ -14,7 +14,7 @@ from utilities import min_max, normalize, augment_data, generateRandomPairs, cal
 # enable_data_augmentation = False
 # percentage_similarity_loss = 0
 # LSTM = False
-ouput_dir_name = "./new_result/"
+ouput_dir_name = "./L2_results/"
 distance_measure = "L2"
 def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarity_loss = 0, LSTM = False, EPOCHS = 500, enable_same_noise = False, save_output = True):
     X_train, y_train, X_test, y_test, info = py_ts_data.load_data(dataset, variables_as_channels=True)
@@ -104,7 +104,7 @@ def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarit
     from sklearn.neighbors import NearestNeighbors
 
     nn_x_test = np.squeeze(X_test)
-    baseline_nn = NearestNeighbors(n_neighbors=10, metric=SBD).fit(nn_x_test)
+    baseline_nn = NearestNeighbors(n_neighbors=10).fit(nn_x_test)
     code_nn = NearestNeighbors(n_neighbors=10).fit(code_test)# the default metric is euclidean distance
 
     # For each item in the test data, find its 11 nearest neighbors in that dataset (the nn is itself)
@@ -126,4 +126,4 @@ def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarit
     #         f.write(" ".join([str(round(L2_distance,2)), str(round(ten_nn_score,2))]))
 
     with open(ouput_dir_name + dataset + "/record.txt", "a") as f:
-        f.write(",".join([dataset, str(enable_data_augmentation), str(percentage_similarity_loss), str(LSTM), str(EPOCHS), "SBD", str(round(L2_distance,2)), str(round(ten_nn_score,2))]) + "\n")
+        f.write(",".join([dataset, str(enable_data_augmentation), str(percentage_similarity_loss), str(LSTM), str(EPOCHS), "L2", str(round(L2_distance,2)), str(round(ten_nn_score,2))]) + "\n")

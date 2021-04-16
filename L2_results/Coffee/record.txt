@@ -1,0 +1,8 @@
+Dataset, Data Augmentation, Coefficient of Similarity Loss, LSTM, EPOCHS, Distance Measure, L2 Distance, 10-nn score
+Coffee,False,0,False,300,L2,1.21,7.54
+Coffee,False,0.2,False,300,L2,1.68,4.79
+Coffee,False,0.5,False,300,L2,1.67,4.0
+Coffee,False,1,False,300,L2,1.68,4.14
+Coffee,True,0,False,300,L2,1.65,6.25
+Coffee,True,0.5,False,300,L2,1.67,4.21
+Coffee,True,1,False,300,L2,1.67,4.5

@@ -1,6 +1,8 @@
 import numpy as np
 from kshape import _sbd as SBD
 import math
+import tensorflow as tf
+# from sklearn.metrics.pairwise import euclidean_distances as ED
 def min_max(data, feature_range=(0, 1)):
     """
     implements min-max scaler
@@ -65,11 +67,13 @@ def generateRandomPairs(K, X_train):
 
     X = X_train[indices1]
     Y = X_train[indices2]
-    print('X shape: ', X.shape)
-    print('Y shape: ', Y.shape)
+    # print('X shape: ', X.shape)
+    # print('Y shape: ', Y.shape)
 
     return X, Y
     
+def ED(X, Y):
+     return np.linalg.norm(X - Y, -1)
 
 def calculatePreSBD(X, Y):
     normalized_X = normalize(X)
@@ -80,7 +84,8 @@ def calculatePreSBD(X, Y):
 
     distance = []
     for x, y in zip(normalized_X_2d, normalized_Y_2d):
-        distance.append(SBD(np.array(x), np.array(y)))
+        distance.append(ED(np.array(x), np.array(y)))
+    # print(ED(np.array(x), np.array(y)))
     distance = np.array(distance)
     print('distance shape: ', distance.shape)
     return normalized_X, normalized_Y, distance

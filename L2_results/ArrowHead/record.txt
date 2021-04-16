@@ -1,0 +1,7 @@
+Dataset, Data Augmentation, Coefficient of Similarity Loss, LSTM, EPOCHS, Distance Measure, L2 Distance, 10-nn score
+ArrowHead,False,0,False,300,L2,2.27,7.31
+ArrowHead,False,0.5,False,300,L2,4.97,2.02
+ArrowHead,False,1,False,300,L2,4.93,1.89
+ArrowHead,True,0,False,300,L2,1.98,7.45
+ArrowHead,True,0.5,False,300,L2,5.01,1.87
+ArrowHead,True,1,False,300,L2,4.96,2.15

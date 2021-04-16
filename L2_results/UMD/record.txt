@@ -1,0 +1,8 @@
+Dataset, Data Augmentation, Coefficient of Similarity Loss, LSTM, EPOCHS, Distance Measure, L2 Distance, 10-nn score
+UMD,False,0,False,300,L2,1.83,7.09
+UMD,False,0.2,False,300,L2,2.71,6.19
+UMD,False,0.5,False,300,L2,2.9,5.92
+UMD,False,1,False,300,L2,4.7,4.86
+UMD,True,0,False,300,L2,1.48,7.21
+UMD,True,0.5,False,300,L2,2.96,6.03
+UMD,True,1,False,300,L2,3.43,6.49
