@@ -1,0 +1,11 @@
+Dataset, Data Augmentation, Coefficient of Similarity Loss, LSTM, EPOCHS, Distance Measure, L2 Distance, 10-nn score
+SmoothSubspace,False,0,False,300,SBD,0.57,3.85
+SmoothSubspace,False,0.2,False,300,SBD,1.17,3.69
+SmoothSubspace,False,0.5,False,300,SBD,1.39,3.39
+SmoothSubspace,False,1,False,300,SBD,1.52,3.27
+SmoothSubspace,False,0,True,300,SBD,3.12,2.18
+SmoothSubspace,False,0.5,True,300,SBD,3.11,2.41
+SmoothSubspace,False,1,True,300,SBD,3.14,2.48
+SmoothSubspace,True,0,False,300,SBD,0.42,3.96
+SmoothSubspace,True,0.5,False,300,SBD,1.31,3.81
+SmoothSubspace,True,1,False,300,SBD,1.2,3.59

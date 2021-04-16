@@ -12,3 +12,4 @@ Chinatown,False,0,False,300,SBD,860.12,3.24
 Chinatown,False,0.5,False,300,SBD,1270.37,3.1
 Chinatown,False,0.5,False,300,SBD,1328.91,3.05
 Chinatown,False,0,True,300,SBD,3835.76,1.35
+Chinatown,False,1,False,300,SBD,0.97,3.55

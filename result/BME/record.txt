@@ -11,3 +11,4 @@ BME,False,0,False,300,SBD,1.22,4.92
 BME,False,0.5,False,300,SBD,2.35,3.69
 BME,False,0.5,False,300,SBD,5.58,4.46
 BME,False,0,True,300,SBD,3.29,3.77
+BME,False,1,False,300,SBD,2.74,4.25
