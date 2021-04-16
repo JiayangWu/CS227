@@ -1,0 +1,9 @@
+Dataset, Data Augmentation, Coefficient of Similarity Loss, LSTM, EPOCHS, Distance Measure, L2 Distance, 10-nn score
+ECGFiveDays,False,0,False,300,SBD,2.16,2.24
+ECGFiveDays,False,0.5,False,300,SBD,2.82,2.27
+ECGFiveDays,False,1,False,300,SBD,3.32,2.33
+ECGFiveDays,False,0,True,300,SBD,9.81,1.48
+ECGFiveDays,False,0.5,True,300,SBD,9.74,2.02
+ECGFiveDays,True,0,False,300,SBD,1.71,2.34
+ECGFiveDays,True,0.5,False,300,SBD,2.68,2.3
+ECGFiveDays,True,1,False,300,SBD,2.67,2.37

@@ -14,7 +14,8 @@ from utilities import min_max, normalize, augment_data, generateRandomPairs, cal
 # enable_data_augmentation = False
 # percentage_similarity_loss = 0
 # LSTM = False
-
+ouput_dir_name = "./new_result/"
+distance_measure = "L2"
 def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarity_loss = 0, LSTM = False, EPOCHS = 500, enable_same_noise = False, save_output = True):
     X_train, y_train, X_test, y_test, info = py_ts_data.load_data(dataset, variables_as_channels=True)
 
@@ -73,21 +74,22 @@ def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarit
     plt.plot(loss_history[5:])
     # plt.show()
     if save_output:
-        if not os.path.isdir("./result/" + dataset):
-            os.mkdir("./result/" + dataset)
-            with open("./result/" + dataset + "/record.txt", "a") as f:
+        if not os.path.isdir(ouput_dir_name + dataset):
+            os.mkdir(ouput_dir_name + dataset)
+            with open(ouput_dir_name + dataset + "/record.txt", "a") as f:
                 f.write("Dataset, Data Augmentation, Coefficient of Similarity Loss, LSTM, EPOCHS, Distance Measure, L2 Distance, 10-nn score\n")
         
-        plt.savefig("./result/" + dataset + "/" + title + "-loss.png")
+        plt.savefig(ouput_dir_name + dataset + "/" + title + "-loss.png")
 
     #%%
+    X_test = normalize(X_test)
     code_test = ae.encode(X_test, LSTM = LSTM)
     decoded_test = ae.decode(code_test)
     plt.clf()
     plt.plot(X_test[0], label = "Original TS")
     plt.plot(decoded_test[0], label = "reconstructed TS")
     if save_output:
-        plt.savefig("./result/" + dataset + "/" + title + "-reconstruction.png")
+        plt.savefig(ouput_dir_name + dataset + "/" + title + "-reconstruction.png")
     # plt.show()
 
     losses = []
@@ -120,8 +122,8 @@ def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarit
     ten_nn_score = np.array(result).mean()
     print("10-nn score is:", ten_nn_score)
     # if save_output:
-    #     with open("./result/" + dataset + "/" + title + "-record.txt", "w") as f:
+    #     with open(ouput_dir_name + dataset + "/" + title + "-record.txt", "w") as f:
     #         f.write(" ".join([str(round(L2_distance,2)), str(round(ten_nn_score,2))]))
 
-    with open("./result/" + dataset + "/record.txt", "a") as f:
+    with open(ouput_dir_name + dataset + "/record.txt", "a") as f:
         f.write(",".join([dataset, str(enable_data_augmentation), str(percentage_similarity_loss), str(LSTM), str(EPOCHS), "SBD", str(round(L2_distance,2)), str(round(ten_nn_score,2))]) + "\n")
