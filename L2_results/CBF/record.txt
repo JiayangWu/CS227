@@ -5,3 +5,5 @@ CBF,False,1,False,300,L2,7.9,1.43
 CBF,True,0,False,300,L2,6.03,4.81
 CBF,True,0.5,False,300,L2,7.64,1.56
 CBF,True,1,False,300,L2,7.54,1.66
+CBF,False,0,True,300,L2,7.79,3.69
+CBF,False,-1,False,300,L2,6.02,5.07

@@ -60,6 +60,7 @@ def augment_data(X_train, K = 1000, alpha = 0.1, enable_same_noise = False):
 
 def generateRandomPairs(K, X_train):
     num_train = len(X_train)
+    print(num_train, K)
     # indices1 = np.random.choice(num_train, int(num_train * math.log2(num_train)))
     # indices2 = np.random.choice(num_train, int(num_train * math.log2(num_train)))
     indices1 = np.random.choice(num_train, K)# * math.log2(num_train)))

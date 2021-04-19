@@ -5,3 +5,5 @@ MoteStrain,False,0.5,False,300,L2,5.55,4.33
 MoteStrain,True,0,False,300,L2,4.43,5.04
 MoteStrain,True,0.5,False,300,L2,5.32,4.36
 MoteStrain,True,1,False,300,L2,5.63,4.24
+MoteStrain,False,0,True,300,L2,6.72,2.97
+MoteStrain,False,-1,False,300,L2,4.66,4.72

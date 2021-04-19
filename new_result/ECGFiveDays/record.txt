@@ -7,3 +7,6 @@ ECGFiveDays,False,0.5,True,300,SBD,9.74,2.02
 ECGFiveDays,True,0,False,300,SBD,1.71,2.34
 ECGFiveDays,True,0.5,False,300,SBD,2.68,2.3
 ECGFiveDays,True,1,False,300,SBD,2.67,2.37
+ECGFiveDays,False,-1,False,300,L2,1.99,7.3
+ECGFiveDays,False,-1,False,300,L2,2.08,7.1
+ECGFiveDays,False,-1,False,300,L2,1.72,8.18

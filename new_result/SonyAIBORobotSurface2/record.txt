@@ -6,3 +6,5 @@ SonyAIBORobotSurface2,False,0,True,300,SBD,5.44,2.6
 SonyAIBORobotSurface2,True,0,False,300,SBD,3.54,4.9
 SonyAIBORobotSurface2,True,0.5,False,300,SBD,4.09,4.19
 SonyAIBORobotSurface2,True,1,False,300,SBD,4.19,3.99
+SonyAIBORobotSurface2,False,-1,False,300,L2,3.68,5.87
+SonyAIBORobotSurface2,False,-1,False,300,L2,3.56,6.2

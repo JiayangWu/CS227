@@ -4,6 +4,7 @@ import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import math
 from kshape import _sbd as SBD
 from auto_encoder import AutoEncoder, train_step
 from utilities import min_max, normalize, augment_data, generateRandomPairs, calculatePreSBD
@@ -14,8 +15,8 @@ from utilities import min_max, normalize, augment_data, generateRandomPairs, cal
 # enable_data_augmentation = False
 # percentage_similarity_loss = 0
 # LSTM = False
-ouput_dir_name = "./L2_results/"
-distance_measure = "L2"
+ouput_dir_name = "./new_result/"
+distance_measure = "SBD_NlogN"
 def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarity_loss = 0, LSTM = False, EPOCHS = 500, enable_same_noise = False, save_output = True):
     X_train, y_train, X_test, y_test, info = py_ts_data.load_data(dataset, variables_as_channels=True)
 
@@ -35,7 +36,8 @@ def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarit
         num_train = len(X_train)
 
     # randomly generate N pairs:
-    num_of_pairs = num_train
+    # int(num_train * math.log2(num_train))
+    num_of_pairs = num_train * int(math.log2(num_train))
     X, Y = generateRandomPairs(num_of_pairs, X_train)
     # NlogN is too large, for N = 1000, NlogN would be 10K
 

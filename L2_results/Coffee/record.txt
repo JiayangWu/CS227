@@ -6,3 +6,5 @@ Coffee,False,1,False,300,L2,1.68,4.14
 Coffee,True,0,False,300,L2,1.65,6.25
 Coffee,True,0.5,False,300,L2,1.67,4.21
 Coffee,True,1,False,300,L2,1.67,4.5
+Coffee,False,0,True,300,L2,1.69,5.89
+Coffee,False,-1,False,300,L2,1.09,8.64

@@ -7,3 +7,6 @@ ArrowHead,False,1,True,300,SBD,3.75,4.21
 ArrowHead,True,0,False,300,SBD,2.3,6.41
 ArrowHead,True,0.5,False,300,SBD,3.34,5.01
 ArrowHead,True,1,False,300,SBD,3.32,5.77
+ArrowHead,False,-1,False,300,L2,2.29,6.94
+ArrowHead,False,-1,False,300,L2,2.47,7.1
+ArrowHead,False,-1,False,300,L2,2.14,7.08

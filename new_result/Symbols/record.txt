@@ -7,3 +7,4 @@ Symbols,False,1,True,300,SBD,11.18,1.73
 Symbols,True,0,False,300,SBD,4.11,5.37
 Symbols,True,0.5,False,300,SBD,5.69,4.11
 Symbols,True,1,False,300,SBD,5.83,3.97
+Symbols,False,-1,False,300,L2,4.09,6.8

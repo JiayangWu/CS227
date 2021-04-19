@@ -9,3 +9,6 @@ Fungi,False,1,True,300,SBD,7.76,6.39
 Fungi,True,0,False,300,SBD,1.78,7.27
 Fungi,True,0.5,False,300,SBD,2.85,7.05
 Fungi,True,1,False,300,SBD,3.35,6.97
+Fungi,False,-1,False,300,L2,2.27,9.28
+Fungi,False,-1,False,300,L2,1.96,9.45
+Fungi,False,-1,False,300,L2,1.66,9.36

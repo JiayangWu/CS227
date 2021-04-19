@@ -9,3 +9,5 @@ SmoothSubspace,False,1,True,300,SBD,3.14,2.48
 SmoothSubspace,True,0,False,300,SBD,0.42,3.96
 SmoothSubspace,True,0.5,False,300,SBD,1.31,3.81
 SmoothSubspace,True,1,False,300,SBD,1.2,3.59
+SmoothSubspace,False,-1,False,300,L2,0.48,7.69
+SmoothSubspace,False,-1,False,300,L2,0.44,7.97

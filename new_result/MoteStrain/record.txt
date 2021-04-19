@@ -7,3 +7,5 @@ MoteStrain,False,0.5,True,300,SBD,6.75,2.74
 MoteStrain,True,0,False,300,SBD,4.46,4.48
 MoteStrain,True,0.5,False,300,SBD,4.94,3.86
 MoteStrain,True,1,False,300,SBD,4.99,3.86
+MoteStrain,False,-1,False,300,L2,4.69,4.58
+MoteStrain,False,-1,False,300,L2,4.5,4.94

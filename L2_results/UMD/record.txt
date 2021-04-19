@@ -6,3 +6,5 @@ UMD,False,1,False,300,L2,4.7,4.86
 UMD,True,0,False,300,L2,1.48,7.21
 UMD,True,0.5,False,300,L2,2.96,6.03
 UMD,True,1,False,300,L2,3.43,6.49
+UMD,False,0,True,300,L2,4.42,4.62
+UMD,False,-1,False,300,L2,1.64,7.12

@@ -5,3 +5,5 @@ ArrowHead,False,1,False,300,L2,4.93,1.89
 ArrowHead,True,0,False,300,L2,1.98,7.45
 ArrowHead,True,0.5,False,300,L2,5.01,1.87
 ArrowHead,True,1,False,300,L2,4.96,2.15
+ArrowHead,False,0,True,300,L2,4.15,2.92
+ArrowHead,False,-1,False,300,L2,2.21,7.13

@@ -6,3 +6,5 @@ GunPoint,False,0.2,False,300,L2,5.52,2.4
 GunPoint,True,0,False,300,L2,1.01,8.07
 GunPoint,True,0.5,False,300,L2,5.56,2.03
 GunPoint,True,1,False,300,L2,5.54,2.2
+GunPoint,False,0,True,300,L2,1.85,6.89
+GunPoint,False,-1,False,300,L2,0.93,8.23

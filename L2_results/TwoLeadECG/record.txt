@@ -3,3 +3,5 @@ TwoLeadECG,False,0,False,300,L2,0.89,6.79
 TwoLeadECG,True,0,False,300,L2,0.78,7.01
 TwoLeadECG,True,0.5,False,300,L2,3.37,3.23
 TwoLeadECG,True,1,False,300,L2,3.35,3.22
+TwoLeadECG,False,0,True,300,L2,1.6,3.58
+TwoLeadECG,False,-1,False,300,L2,1.07,5.91

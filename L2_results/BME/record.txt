@@ -5,3 +5,5 @@ BME,False,0.5,False,300,L2,3.56,6.01
 BME,False,1,False,300,L2,3.67,6.23
 BME,True,0,False,300,L2,2.01,7.42
 BME,True,0.5,False,300,L2,3.0,6.31
+BME,False,0,True,300,L2,3.74,5.37
+BME,False,-1,False,300,L2,1.7,7.49
