@@ -4,6 +4,7 @@ import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import math
 from kshape import _sbd as SBD
 from auto_encoder import AutoEncoder, train_step
 from utilities import min_max, normalize, augment_data, generateRandomPairs, calculatePreSBD
@@ -14,8 +15,9 @@ from utilities import min_max, normalize, augment_data, generateRandomPairs, cal
 # enable_data_augmentation = False
 # percentage_similarity_loss = 0
 # LSTM = False
-
-def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarity_loss = 0, LSTM = False, EPOCHS = 500, enable_same_noise = False, save_output = True):
+ouput_dir_name = "./SBD_results/"
+distance_measure = "SBD"
+def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarity_loss = 0, LSTM = False, EPOCHS = 500, enable_same_noise = False, save_output = True, NlogN = True):
     X_train, y_train, X_test, y_test, info = py_ts_data.load_data(dataset, variables_as_channels=True)
 
     print("Dataset shape: Train: {}, Test: {}".format(X_train.shape, X_test.shape))
@@ -34,7 +36,11 @@ def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarit
         num_train = len(X_train)
 
     # randomly generate N pairs:
-    num_of_pairs = num_train
+    # int(num_train * math.log2(num_train))
+    if NlogN:
+        num_of_pairs = num_train * int(math.log2(num_train))
+    else:
+        num_of_pairs = num_train
     X, Y = generateRandomPairs(num_of_pairs, X_train)
     # NlogN is too large, for N = 1000, NlogN would be 10K
 
@@ -73,21 +79,22 @@ def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarit
     plt.plot(loss_history[5:])
     # plt.show()
     if save_output:
-        if not os.path.isdir("./result/" + dataset):
-            os.mkdir("./result/" + dataset)
-            with open("./result/" + dataset + "/record.txt", "a") as f:
+        if not os.path.isdir(ouput_dir_name + dataset):
+            os.mkdir(ouput_dir_name + dataset)
+            with open(ouput_dir_name + dataset + "/record.txt", "a") as f:
                 f.write("Dataset, Data Augmentation, Coefficient of Similarity Loss, LSTM, EPOCHS, Distance Measure, L2 Distance, 10-nn score\n")
         
-        plt.savefig("./result/" + dataset + "/" + title + "-loss.png")
+        plt.savefig(ouput_dir_name + dataset + "/" + title + "-loss.png")
 
     #%%
+    X_test = normalize(X_test)
     code_test = ae.encode(X_test, LSTM = LSTM)
     decoded_test = ae.decode(code_test)
     plt.clf()
     plt.plot(X_test[0], label = "Original TS")
     plt.plot(decoded_test[0], label = "reconstructed TS")
     if save_output:
-        plt.savefig("./result/" + dataset + "/" + title + "-reconstruction.png")
+        plt.savefig(ouput_dir_name + dataset + "/" + title + "-reconstruction.png")
     # plt.show()
 
     losses = []
@@ -102,7 +109,7 @@ def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarit
     from sklearn.neighbors import NearestNeighbors
 
     nn_x_test = np.squeeze(X_test)
-    baseline_nn = NearestNeighbors(n_neighbors=10, metric=SBD).fit(nn_x_test)
+    baseline_nn = NearestNeighbors(n_neighbors=10, metric = SBD).fit(nn_x_test)
     code_nn = NearestNeighbors(n_neighbors=10).fit(code_test)# the default metric is euclidean distance
 
     # For each item in the test data, find its 11 nearest neighbors in that dataset (the nn is itself)
@@ -120,8 +127,8 @@ def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarit
     ten_nn_score = np.array(result).mean()
     print("10-nn score is:", ten_nn_score)
     # if save_output:
-    #     with open("./result/" + dataset + "/" + title + "-record.txt", "w") as f:
+    #     with open(ouput_dir_name + dataset + "/" + title + "-record.txt", "w") as f:
     #         f.write(" ".join([str(round(L2_distance,2)), str(round(ten_nn_score,2))]))
 
-    with open("./result/" + dataset + "/record.txt", "a") as f:
-        f.write(",".join([dataset, str(enable_data_augmentation), str(percentage_similarity_loss), str(LSTM), str(EPOCHS), "SBD", str(round(L2_distance,2)), str(round(ten_nn_score,2))]) + "\n")
+    with open(ouput_dir_name + dataset + "/record.txt", "a") as f:
+        f.write(",".join([dataset, str(enable_data_augmentation), str(percentage_similarity_loss), str(LSTM), str(EPOCHS), distance_measure, str(round(L2_distance,2)), str(round(ten_nn_score,2)), str(NlogN)]) + "\n")
