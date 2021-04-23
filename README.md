@@ -1,4 +1,5 @@
 # Readme
+This is the branch that Jiayang worked on, for Jason's part, please go to [here](https://github.com/JiayangWu/CS227/tree/LSTM-AutoEncoder).
 
 ## Repo Structures
 - `auto_encoder.py`: My model
