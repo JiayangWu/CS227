@@ -15,8 +15,8 @@ from utilities import min_max, normalize, augment_data, generateRandomPairs, cal
 # enable_data_augmentation = False
 # percentage_similarity_loss = 0
 # LSTM = False
-ouput_dir_name = "./new_result/"
-distance_measure = "SBD_4.19"
+ouput_dir_name = "./SBD_results/"
+distance_measure = "SBD"
 def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarity_loss = 0, LSTM = False, EPOCHS = 500, enable_same_noise = False, save_output = True, NlogN = True):
     X_train, y_train, X_test, y_test, info = py_ts_data.load_data(dataset, variables_as_channels=True)
 

@@ -1,0 +1,10 @@
+Dataset, Data Augmentation, Coefficient of Similarity Loss, LSTM, EPOCHS, Distance Measure, SBD Distance, 10-nn score
+ECG200,False,0,False,300,SBD,1.94,6.51
+ECG200,False,1,False,300,SBD,2.7,5.94
+ECG200,False,0,True,300,SBD,3.19,6.43
+ECG200,False,0.5,True,300,SBD,3.56,5.83
+ECG200,True,0,False,300,SBD,1.87,6.29
+ECG200,True,0.5,False,300,SBD,2.55,6.22
+ECG200,True,1,False,300,SBD,2.69,6.43
+ECG200,False,-1,False,300,SBD,2.01,8.1
+

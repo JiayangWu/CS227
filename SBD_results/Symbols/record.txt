@@ -1,0 +1,11 @@
+Dataset, Data Augmentation, Coefficient of Similarity Loss, LSTM, EPOCHS, Distance Measure, SBD Distance, 10-nn score
+Symbols,False,0,False,300,SBD,4.37,5.05
+Symbols,False,0.2,False,300,SBD,5.47,3.89
+Symbols,False,0,True,300,SBD,11.16,1.18
+Symbols,False,0.5,True,300,SBD,10.65,1.81
+Symbols,False,1,True,300,SBD,11.18,1.73
+Symbols,True,0,False,300,SBD,4.11,5.37
+Symbols,True,0.5,False,300,SBD,5.69,4.11
+Symbols,True,1,False,300,SBD,5.83,3.97
+Symbols,False,-1,False,300,SBD,4.09,6.8
+

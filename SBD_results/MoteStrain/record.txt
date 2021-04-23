@@ -1,0 +1,11 @@
+Dataset, Data Augmentation, Coefficient of Similarity Loss, LSTM, EPOCHS, Distance Measure, SBD Distance, 10-nn score
+MoteStrain,False,0,False,300,SBD,4.85,4.0
+MoteStrain,False,0.2,False,300,SBD,4.95,4.04
+MoteStrain,False,0.5,False,300,SBD,5.23,3.71
+MoteStrain,False,0,True,300,SBD,6.96,2.81
+MoteStrain,False,0.5,True,300,SBD,6.75,2.74
+MoteStrain,True,0,False,300,SBD,4.46,4.48
+MoteStrain,True,0.5,False,300,SBD,4.94,3.86
+MoteStrain,True,1,False,300,SBD,4.99,3.86
+MoteStrain,False,-1,False,300,SBD,4.69,4.58
+
