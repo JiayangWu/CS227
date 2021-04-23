@@ -36,7 +36,7 @@ def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarit
         num_train = len(X_train)
 
     # randomly generate N pairs:
-    # int(num_train * math.log2(num_train))
+    # NlogN woule be int(num_train * math.log2(num_train))
     if NlogN:
         num_of_pairs = num_train * int(math.log2(num_train))
     else:
@@ -60,7 +60,7 @@ def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarit
     loss_history = []
     t1 = time.time()
     for epoch in range(EPOCHS):
-        #total_loss = train_step(X_train, ae)
+
         if epoch % 100 == 50:
             print("Epoch {}/{}".format(epoch, EPOCHS))
         total_loss = train_step(normalized_X, normalized_Y, distance, ae, alpha = percentage_similarity_loss, LSTM = LSTM)
@@ -75,7 +75,6 @@ def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarit
     plt.xlabel("epoch starting from 5")
     plt.ylabel("loss")
     plt.title("Loss vs epoch")
-    # print(loss_history[5:])
     plt.plot(loss_history[5:])
     # plt.show()
     if save_output:
@@ -126,9 +125,6 @@ def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarit
 
     ten_nn_score = np.array(result).mean()
     print("10-nn score is:", ten_nn_score)
-    # if save_output:
-    #     with open(ouput_dir_name + dataset + "/" + title + "-record.txt", "w") as f:
-    #         f.write(" ".join([str(round(L2_distance,2)), str(round(ten_nn_score,2))]))
-
-    with open(ouput_dir_name + dataset + "/record.txt", "a") as f:
-        f.write(",".join([dataset, str(enable_data_augmentation), str(percentage_similarity_loss), str(LSTM), str(EPOCHS), distance_measure, str(round(L2_distance,2)), str(round(ten_nn_score,2)), str(NlogN)]) + "\n")
+    if save_output:
+        with open(ouput_dir_name + dataset + "/record.txt", "a") as f:
+            f.write(",".join([dataset, str(enable_data_augmentation), str(percentage_similarity_loss), str(LSTM), str(EPOCHS), distance_measure, str(round(L2_distance,2)), str(round(ten_nn_score,2)), str(NlogN)]) + "\n")
