@@ -7,8 +7,8 @@
 - `dataset_lists.py`: Stores the name of all small datasets
 - `kshape.py`: For SBD calculation
 - `single_testing.py`: For testing under one setting
-- `batched_testing.py`: For testing under batch
-- `logs.txt`: Stores failed testing log, during failed testing the loss can be Nan and the output images are empty.
+- `batched_testing.py`: For testing in batch
+- `logs.txt`: Stores failed testing log, *during failed testing the loss can be Nan and the output images are empty.*
 - `Experiments2.ipynb`: The notebook for early testing. It's no longer in use.
 - `dataset_info`: Stores the informaiton of datasets
 - `SBD_results`: Stores batched testing results using SBD as distance measure
