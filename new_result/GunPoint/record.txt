@@ -7,5 +7,5 @@ GunPoint,False,1,True,300,SBD,2.46,6.13
 GunPoint,True,0,False,300,SBD,0.91,7.78
 GunPoint,True,0.5,False,300,SBD,1.29,7.96
 GunPoint,True,1,False,300,SBD,1.46,7.25
-GunPoint,False,-1,False,300,L2,0.97,8.42
-GunPoint,False,-1,False,300,L2,0.92,8.28
+GunPoint,False,-1,False,300,SBD,0.97,8.42
+

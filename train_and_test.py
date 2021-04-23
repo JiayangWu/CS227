@@ -16,8 +16,8 @@ from utilities import min_max, normalize, augment_data, generateRandomPairs, cal
 # percentage_similarity_loss = 0
 # LSTM = False
 ouput_dir_name = "./new_result/"
-distance_measure = "SBD_NlogN"
-def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarity_loss = 0, LSTM = False, EPOCHS = 500, enable_same_noise = False, save_output = True):
+distance_measure = "SBD_4.19"
+def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarity_loss = 0, LSTM = False, EPOCHS = 500, enable_same_noise = False, save_output = True, NlogN = True):
     X_train, y_train, X_test, y_test, info = py_ts_data.load_data(dataset, variables_as_channels=True)
 
     print("Dataset shape: Train: {}, Test: {}".format(X_train.shape, X_test.shape))
@@ -37,7 +37,10 @@ def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarit
 
     # randomly generate N pairs:
     # int(num_train * math.log2(num_train))
-    num_of_pairs = num_train * int(math.log2(num_train))
+    if NlogN:
+        num_of_pairs = num_train * int(math.log2(num_train))
+    else:
+        num_of_pairs = num_train
     X, Y = generateRandomPairs(num_of_pairs, X_train)
     # NlogN is too large, for N = 1000, NlogN would be 10K
 
@@ -106,7 +109,7 @@ def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarit
     from sklearn.neighbors import NearestNeighbors
 
     nn_x_test = np.squeeze(X_test)
-    baseline_nn = NearestNeighbors(n_neighbors=10).fit(nn_x_test)
+    baseline_nn = NearestNeighbors(n_neighbors=10, metric = SBD).fit(nn_x_test)
     code_nn = NearestNeighbors(n_neighbors=10).fit(code_test)# the default metric is euclidean distance
 
     # For each item in the test data, find its 11 nearest neighbors in that dataset (the nn is itself)
@@ -128,4 +131,4 @@ def trainAndTest(dataset, enable_data_augmentation = False, percentage_similarit
     #         f.write(" ".join([str(round(L2_distance,2)), str(round(ten_nn_score,2))]))
 
     with open(ouput_dir_name + dataset + "/record.txt", "a") as f:
-        f.write(",".join([dataset, str(enable_data_augmentation), str(percentage_similarity_loss), str(LSTM), str(EPOCHS), "L2", str(round(L2_distance,2)), str(round(ten_nn_score,2))]) + "\n")
+        f.write(",".join([dataset, str(enable_data_augmentation), str(percentage_similarity_loss), str(LSTM), str(EPOCHS), distance_measure, str(round(L2_distance,2)), str(round(ten_nn_score,2)), str(NlogN)]) + "\n")

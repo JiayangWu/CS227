@@ -85,7 +85,7 @@ def calculatePreSBD(X, Y):
 
     distance = []
     for x, y in zip(normalized_X_2d, normalized_Y_2d):
-        distance.append(ED(np.array(x), np.array(y)))
+        distance.append(SBD(np.array(x), np.array(y)))
     # print(ED(np.array(x), np.array(y)))
     distance = np.array(distance)
     print('distance shape: ', distance.shape)

@@ -10,3 +10,7 @@ CBF,True,1,False,300,SBD,6.49,2.94
 CBF,False,-1,False,300,L2,6.18,4.48
 CBF,False,-1,False,300,L2,6.3,4.59
 CBF,False,-1,False,300,L2,5.92,5.44
+CBF,False,0,False,300,SBD_NlogN,5.93,5.25
+CBF,False,-1,False,300,SBD,5.97,5.19
+CBF,False,-1,False,300,SBD,6.1,4.59,False
+CBF,False,-1,False,300,SBD_4.19,6.01,3.5,True

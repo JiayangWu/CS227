@@ -8,3 +8,7 @@ Symbols,True,0,False,300,SBD,4.11,5.37
 Symbols,True,0.5,False,300,SBD,5.69,4.11
 Symbols,True,1,False,300,SBD,5.83,3.97
 Symbols,False,-1,False,300,L2,4.09,6.8
+Symbols,False,-1,False,300,L2,4.17,6.68
+Symbols,False,0,False,300,SBD_NlogN,4.11,6.5
+Symbols,False,-1,False,300,SBD,4.02,6.77
+Symbols,False,-1,False,300,SBD,5.52,5.87,False

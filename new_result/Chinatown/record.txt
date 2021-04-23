@@ -12,3 +12,9 @@ Chinatown,True,1,False,300,SBD,0.79,5.06
 Chinatown,False,-1,False,300,L2,0.53,5.23
 Chinatown,False,-1,False,300,L2,0.53,5.87
 Chinatown,False,-1,False,300,L2,0.53,5.75
+Chinatown,False,0,False,300,SBD_NlogN,0.5,5.75
+Chinatown,False,0.5,False,300,SBD_NlogN,0.96,4.0
+Chinatown,False,1,False,300,SBD_NlogN,1.44,1.34
+Chinatown,False,-1,False,300,SBD,0.51,5.14
+Chinatown,False,-1,False,300,SBD,0.53,5.43,False
+Chinatown,False,-1,False,300,SBD_4.19,0.5,5.33,True
