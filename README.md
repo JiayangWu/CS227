@@ -30,6 +30,6 @@
 
 ## Bugs fixed so far:
 1. Too few epochs, previously 50, now 300
-2. Used np library to calculate ED, causing No Gradients Provided for Any Variable and the model is not trained with similarity loss, now use TensorFLow
-3. Updated the 10-nn score function, previously it used ED in the input, now it's properly the distance measure that I selected. 
+2. Used np library to calculate ED, causing No Gradients Provided for Any Variable and the model was not trained with similarity loss, now use TensorFLow
+3. Updated the 10-nn score function, previously it used ED in the input, now it's properly using the distance measure that I selected. 
 4. Only z-normlized the training data, now testing data would be z-normalized as well
