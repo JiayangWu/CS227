@@ -7,8 +7,4 @@ DiatomSizeReduction,True,0,False,300,SBD,1.04,7.01
 DiatomSizeReduction,True,0.5,False,300,SBD,2.41,4.3
 DiatomSizeReduction,True,1,False,300,SBD,2.42,4.44
 DiatomSizeReduction,False,-1,False,300,L2,1.73,5.19
-DiatomSizeReduction,False,-1,False,300,L2,1.29,5.29
-DiatomSizeReduction,False,-1,False,300,L2,1.77,4.87
-DiatomSizeReduction,False,0,False,300,SBD_NlogN,1.26,5.34
-DiatomSizeReduction,False,-1,False,300,SBD,1.09,7.25
-DiatomSizeReduction,False,-1,False,300,SBD,1.94,4.05,False
+

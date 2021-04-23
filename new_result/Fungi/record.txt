@@ -10,10 +10,4 @@ Fungi,True,0,False,300,SBD,1.78,7.27
 Fungi,True,0.5,False,300,SBD,2.85,7.05
 Fungi,True,1,False,300,SBD,3.35,6.97
 Fungi,False,-1,False,300,L2,2.27,9.28
-Fungi,False,-1,False,300,L2,1.96,9.45
-Fungi,False,-1,False,300,L2,1.66,9.36
-Fungi,False,0,False,300,SBD_NlogN,1.68,9.43
-Fungi,False,0.5,False,300,SBD_NlogN,4.64,8.39
-Fungi,False,1,False,300,SBD_NlogN,4.51,8.53
-Fungi,False,-1,False,300,SBD,1.71,9.34
-Fungi,False,-1,False,300,SBD,2.73,9.17,False
+

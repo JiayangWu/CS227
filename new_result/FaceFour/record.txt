@@ -8,8 +8,4 @@ FaceFour,True,0,False,300,SBD,9.82,7.12
 FaceFour,True,0.5,False,300,SBD,10.83,6.24
 FaceFour,True,1,False,300,SBD,10.33,6.38
 FaceFour,False,-1,False,300,L2,10.94,7.23
-FaceFour,False,-1,False,300,L2,10.66,7.27
-FaceFour,False,-1,False,300,L2,10.15,7.72
-FaceFour,False,0,False,300,SBD_NlogN,9.78,7.66
-FaceFour,False,-1,False,300,SBD,9.94,7.41
-FaceFour,False,-1,False,300,SBD,10.02,7.4,False
+

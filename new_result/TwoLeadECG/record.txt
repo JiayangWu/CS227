@@ -7,7 +7,4 @@ TwoLeadECG,True,0,False,300,SBD,0.83,3.05
 TwoLeadECG,True,0.5,False,300,SBD,1.82,2.61
 TwoLeadECG,True,1,False,300,SBD,3.27,2.97
 TwoLeadECG,False,-1,False,300,L2,0.89,6.24
-TwoLeadECG,False,-1,False,300,L2,0.79,6.63
-TwoLeadECG,False,0,False,300,SBD_NlogN,0.82,6.81
-TwoLeadECG,False,-1,False,300,SBD,0.78,6.92
-TwoLeadECG,False,-1,False,300,SBD,0.91,6.46,False
+
